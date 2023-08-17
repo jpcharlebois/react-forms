@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const SIGNUP_URL = 'https://fsa-jwt-practice.herokuapp.com/signup';
+
 export default function SignUpForm({ setToken }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ export default function SignUpForm({ setToken }) {
         console.log("Hello 👋");
 
         try {
-            const response = await fetch('https://fsa-jwt-practice.herokuapp.com/signup', {
+            const response = await fetch(SIGNUP_URL, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -29,17 +31,31 @@ export default function SignUpForm({ setToken }) {
 
     return (
     <> 
+      <div className='sign-up'>
         <h2>Sign Up!</h2>
         {error && <p>{error}</p>}
         <form onSubmit={handleSubmit}>
             <label>
-            Username: <input value={username} onChange={(e) => setUsername(e.target.value)} />
+                Username: 
+                    <input 
+                        type='text' 
+                        required={true} 
+                        minLength={8} 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} />
             </label>
             <label>
-            Password: <input value={password} onChange={(e) => setPassword(e.target.value)} />
+                Password: 
+                    <input 
+                        type='password' 
+                        required={true} 
+                        minLength={8} 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} />
             </label>
             <button>Submit</button>
         </form>
+      </div>
     </>
     )
 }
