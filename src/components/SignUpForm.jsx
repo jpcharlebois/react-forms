@@ -20,9 +20,8 @@ export default function SignUpForm({ setToken }) {
                                        "password": password})
             });
             const result = await response.json();
-console.log("sign up response: ", result);
-console.log("print just token:", result.token);
-            //setToken(result);
+            console.log("sign up response: ", result);
+            setToken(result.token);
         } catch (error) {
             setError(error.message);
         }
